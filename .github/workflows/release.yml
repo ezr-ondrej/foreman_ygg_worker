@@ -1,0 +1,38 @@
+# workflow name
+name: Generate release-artifacts
+
+# on events
+on:
+  push:
+    tags:
+        - '*'
+
+# workflow tasks
+jobs:
+  generate:
+    name: Generate cross-platform builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: olegtarasov/get-tag@v2.1
+        id: tagName
+        with:
+          tagRegex: "v(.*)"  # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
+          tagRegexGroup: 1 # Optional. Default is 1.
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Generate build files
+        uses: thatisuday/go-cross-build@v1.1.0
+        with:
+            platforms: 'linux/amd64'
+            package: 'src'
+            name: 'foreman_ygg_worker-${{ steps.tagName.outputs.tag }}'
+            compress: 'true'
+            dest: 'dist'
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: dist/*
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
