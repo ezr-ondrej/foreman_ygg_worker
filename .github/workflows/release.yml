@@ -28,6 +28,10 @@ jobs:
             name: 'foreman_ygg_worker-${{ steps.tagName.outputs.tag }}'
             compress: 'true'
             dest: 'dist'
+      - name: Generate distribution tarball
+        run: |
+          make distribution-tarball
+          sudo mv *.tar.gz dist/
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
