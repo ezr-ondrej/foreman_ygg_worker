@@ -12,7 +12,7 @@ import (
 
 	"git.sr.ht/~spc/go-log"
 	"github.com/google/uuid"
-	pb "github.com/redhatinsights/yggdrasil/protocol"
+	pb "github.com/redhatinsights/yggdrasil_v0/protocol"
 	"google.golang.org/grpc"
 )
 

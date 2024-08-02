@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	pb "github.com/redhatinsights/yggdrasil/protocol"
+	pb "github.com/redhatinsights/yggdrasil_v0/protocol"
 )
 
 // foremanServer implements the Worker gRPC service as defined by the yggdrasil

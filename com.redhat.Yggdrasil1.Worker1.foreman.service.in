@@ -1,0 +1,13 @@
+[Unit]
+Description=rhc-worker-playbook worker service
+Documentation=https://github.com/ezr-ondrej/foreman_ygg_worker
+
+[Service]
+Type=dbus
+User=root
+Group=@worker_user@
+ExecStart=@libexecdir@/foreman_worker
+BusName=com.redhat.Yggdrasil1.Worker1.foreman
+
+[Install]
+WantedBy=multi-user.target
