@@ -1,0 +1,4 @@
+
+[D-BUS Service]
+Name=com.redhat.Yggdrasil1.Worker1.foreman
+SystemdService=com.redhat.Yggdrasil1.Worker1.foreman.service
